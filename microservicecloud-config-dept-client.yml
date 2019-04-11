@@ -1,0 +1,92 @@
+﻿spring:   
+    profiles:
+        active:
+        - dev  
+---  
+server: 
+    port: 8002
+
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  type-aliases-package: com.baidu.entity
+  mapper-locations: classpath:mybatis/mapper/*.xml
+    
+spring:
+    profiles: dev        #开发环境
+    application:
+        name: microservicecloud-config-dept-client
+    datasource:
+    #当前数据库连接池操作类型
+        type: com.alibaba.druid.pool.DruidDataSource 
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/cloud?useUnicode=true&characterEncoding=utf-8&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        username: root
+        password: root
+        dbcp2:
+            #数据库最小连接数
+            min-idle: 5 
+            #初始化连接数            
+            initial-size: 5 
+            #最大连接数        
+            max-total: 5 
+            #等待连接获取的最大超时时间       
+            max-wait-millis: 200 
+        
+eureka:
+# 客户端进行Eureka注册的配置
+ client:  # 客户端进行Eureka注册的配置
+  service-url:
+    defaultZone: http://eureka7001.com:7001/eureka/
+ instance:
+  instance-id: microservicecloud-dept8002
+  prefer-ip-address: true
+  
+info:
+  app.name: microservicecloud
+  company.name: www.baidu.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+---    
+server: 
+    port: 8002
+
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  type-aliases-package: com.baidu.entity
+  mapper-locations: classpath:mybatis/mapper/*.xml
+    
+spring:
+    profiles: test        #测试环境
+    application:
+        name: microservicecloud-config-dept-client
+    datasource:
+    #当前数据库连接池操作类型
+        type: com.alibaba.druid.pool.DruidDataSource 
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/cloud?useUnicode=true&characterEncoding=utf-8&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        username: root
+        password: root
+        dbcp2:
+            #数据库最小连接数
+            min-idle: 5 
+            #初始化连接数            
+            initial-size: 5 
+            #最大连接数        
+            max-total: 5 
+            #等待连接获取的最大超时时间       
+            max-wait-millis: 200 
+        
+eureka:
+# 客户端进行Eureka注册的配置
+ client:  # 客户端进行Eureka注册的配置
+  service-url:
+    defaultZone: http://eureka7001.com:7001/eureka/ 
+ instance:
+  instance-id: microservicecloud-dept8002
+  prefer-ip-address: true
+  
+info:
+  app.name: microservicecloud
+  company.name: www.baidu.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
